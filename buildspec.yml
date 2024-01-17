@@ -7,7 +7,7 @@ phases:
     commands:
       - echo Build started on `date`
       # path of pom file
-      - cd ./src/main
+      - cd ./testSub1/cicdtest
       - mvn install
   post_build:
     commands:
