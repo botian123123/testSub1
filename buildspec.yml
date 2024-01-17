@@ -9,7 +9,9 @@ phases:
     commands:
       - echo Build started on `date`
       # path of pom file
-      - cd ./cicdtest
+      - cd $CODEBUILD_SRC_DIR_source1/cicdtest
+      - mvn install
+      - cd $CODEBUILD_SRC_DIR_source2/sub2
       - mvn install
   post_build:
     commands:
@@ -20,5 +22,4 @@ artifacts:
   files:
       - '*/*.jar'
   base-directory: cicdtest
-  name: 'submodel-1'
   discard-paths: yes
