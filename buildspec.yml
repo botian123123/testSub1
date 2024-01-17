@@ -12,6 +12,9 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - ls
 artifacts:
   files:
-      - target/cicdtest-0.0.1-SNAPSHOT.jar
+      - '*/*.jar'
+  base-directory: cicdtest
+  name: submodel-$(date +%Y-%m-%d)
