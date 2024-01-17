@@ -11,14 +11,14 @@ phases:
       # path of pom file
       - cd ./cicdtest
       - mvn install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - aws s3 sync ./ s3://$S3_BUCKET/$S3_PREFIX/
+
 artifacts:
   files:
       - '*/*.jar'
-  base-directory: '/'
+  base-directory: cicdtest
   name: 'submodel-1'
   discard-paths: yes
-
-post_build:
-  commands:
-    - echo Build completed on `date`
-    - aws s3 sync ./ s3://$S3_BUCKET/$S3_PREFIX/
