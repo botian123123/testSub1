@@ -23,3 +23,9 @@ artifacts:
       - '*/*.jar'
   base-directory: cicdtest
   discard-paths: yes
+  secondary-artifacts:
+    artifacts1:
+      base-directory: sub2
+      discard-paths: yes
+      files:
+        - '*/*.jar'
