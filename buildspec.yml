@@ -1,20 +1,24 @@
 version: 0.2
 
+env:
+  variables:
+    S3_BUCKET: 'cicd-test-submodle'
+    S3_PREFIX: 'submodels/'
 phases:
-  pre_build:
-    commands:
   build:
     commands:
       - echo Build started on `date`
       # path of pom file
       - cd ./cicdtest
       - mvn install
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - ls
 artifacts:
   files:
       - '*/*.jar'
-  base-directory: cicdtest
-  name: submodel-$(date +%Y-%m-%d)
+  base-directory: '/'
+  name: 'submodel-1'
+  discard-paths: yes
+
+
+post_build:
+  commands:
+    - echo Build completed on `date`
