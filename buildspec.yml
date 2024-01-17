@@ -16,7 +16,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - aws s3 sync ./ s3://$S3_BUCKET/$S3_PREFIX/
+      - aws s3 sync ./target/ s3://$S3_BUCKET/$S3_PREFIX/ --exclude '*' --inc;ide '*.jar'
 
 artifacts:
   files:
