@@ -11,7 +11,7 @@ phases:
       # path of pom file
       - cd $CODEBUILD_SRC_DIR/cicdtest
       - mvn install
-      - cd $CODEBUILD_SRC_DIR_source1/sub2
+      - cd $CODEBUILD_SRC_DIR_submod2/sub2
       - mvn install
   post_build:
     commands:
