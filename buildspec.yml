@@ -14,4 +14,4 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    -target/cicdtest-0.0.1-SNAPSHOT.jar
+      - target/cicdtest-0.0.1-SNAPSHOT.jar
