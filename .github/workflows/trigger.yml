@@ -14,7 +14,7 @@ jobs:
         script: |
           try {
             await github.rest.actions.createWorkflowDispatch({
-              auth: ${{ secrets.PAT }}
+              auth: ${{ secrets.PAT }},
               owner: 'botian123123',
               repo: 'testMain',
               workflow_id: 'build.yml',
