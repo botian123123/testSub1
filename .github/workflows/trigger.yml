@@ -12,16 +12,20 @@ jobs:
       uses: actions/github-script@v5
       with:
         script: |
-          try {
-            await github.rest.actions.createWorkflowDispatch({
-              auth: ${{ secrets.PAT }},
-              owner: 'botian123123',
-              repo: 'testMain',
-              workflow_id: 'build.yml',
-              ref: 'main',
-            });
-            console.log('Build workflow triggered successfully.');
-          } catch (error) {
-            console.error('Error:', error);
-            throw error;
-          }
+          const octokit = new Octokit({
+            auth: ${{ secrets.GH_PAT }}
+          })
+
+          await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+            owner: 'OWNER',
+            repo: 'REPO',
+            workflow_id: 'WORKFLOW_ID',
+            ref: 'topic-branch',
+            inputs: {
+              name: 'Mona the Octocat',
+              home: 'San Francisco, CA'
+            },
+            headers: {
+              'X-GitHub-Api-Version': '2022-11-28'
+            }
+          })
