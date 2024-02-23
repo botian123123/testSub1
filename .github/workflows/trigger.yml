@@ -11,17 +11,17 @@ jobs:
     - name: Trigger Main Workflow
       uses: actions/github-script@v5
       with:
+        token: ${{ secrets.PAT }}
         script: |
-          const octokit = new Octokit({
-            auth: process.env.secrets.GH_PAT
-          })
-
-          await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
-            owner: 'OWNER',
-            repo: 'REPO',
-            workflow_id: 'WORKFLOW_ID',
-            ref: 'topic-branch',
-            headers: {
-              'X-GitHub-Api-Version': '2022-11-28'
-            }
-          })
+          try {
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'botian123123',
+              repo: 'testMain',
+              workflow_id: 'build.yml',
+              ref: 'main',
+            });
+            console.log('Build workflow triggered successfully.');
+          } catch (error) {
+            console.error('Error:', error);
+            throw error;
+          }
