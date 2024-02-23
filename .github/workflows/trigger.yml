@@ -11,7 +11,7 @@ jobs:
     - name: Trigger Main Workflow
       uses: actions/github-script@v5
       with:
-        github-token: ${{ env.PAT }}
+        token: ${{ env.PAT }}
         script: |
           try {
             await github.rest.actions.createWorkflowDispatch({
